@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "training-video-player-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/trainingVideoPlayer/TrainingVideoPlayerWebPart.js",
+          "manifest": "./src/webparts/trainingVideoPlayer/TrainingVideoPlayerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "TrainingVideoPlayerWebPartStrings": "lib/webparts/trainingVideoPlayer/loc/{locale}.js"
+  }
+}
