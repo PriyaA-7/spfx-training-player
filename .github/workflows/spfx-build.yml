@@ -18,18 +18,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: training-video-player
 
       - name: Install gulp CLI
         run: npm install -g gulp-cli
 
       - name: Bundle solution
         run: gulp bundle --ship
-
-      - name: Package solution
-        run: gulp package-solution --ship
-
-      - name: Upload SPFx package
-        uses: actions/upload-artifact@v4
-        with:
-          name: spfx-sppkg
-          path: sharepoint/solution/*.sppkg
+        working-directory: trai
