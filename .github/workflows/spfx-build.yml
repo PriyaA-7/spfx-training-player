@@ -7,11 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      NODE_OPTIONS: --openssl-legacy-provider
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Optional but very useful for debugging
       - name: Show repo structure
         run: |
           echo "=== ROOT ==="
@@ -28,15 +30,12 @@ jobs:
         run: npm install
         working-directory: training-video-player
 
-      - name: Install Gulp CLI
-        run: npm install -g gulp-cli
-
       - name: Bundle solution
-        run: gulp bundle --ship
+        run: npx gulp bundle --ship
         working-directory: training-video-player
 
       - name: Package solution
-        run: gulp package-solution --ship
+        run: npx gulp package-solution --ship
         working-directory: training-video-player
 
       - name: Upload SPFx package
