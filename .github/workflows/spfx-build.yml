@@ -21,11 +21,11 @@ jobs:
         working-directory: training-video-player
 
       - name: Bundle solution
-        run: npx gulp bundle --ship
+        run: NODE_OPTIONS=--openssl-legacy-provider npx gulp bundle --ship
         working-directory: training-video-player
 
       - name: Package solution
-        run: npx gulp package-solution --ship
+        run: NODE_OPTIONS=--openssl-legacy-provider npx gulp package-solution --ship
         working-directory: training-video-player
 
       - name: Upload SPFx package
