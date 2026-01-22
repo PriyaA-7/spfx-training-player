@@ -11,6 +11,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Show repo contents (debug)
+        run: ls -la
+
       - name: Use Node.js 16
         uses: actions/setup-node@v4
         with:
@@ -18,11 +21,18 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: training-video-player
 
       - name: Install gulp CLI
         run: npm install -g gulp-cli
 
       - name: Bundle solution
         run: gulp bundle --ship
-        working-directory: trai
+
+      - name: Package solution
+        run: gulp package-solution --ship
+
+      - name: Upload SPFx package
+        uses: actions/upload-artifact@v4
+        with:
+          name: spfx-sppkg
+          path: sharepoint/solution/*.sppkg
