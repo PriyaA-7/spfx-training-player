@@ -11,12 +11,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # Optional but very useful for debugging
       - name: Show repo structure
         run: |
           echo "=== ROOT ==="
           ls -la
-          echo "=== FIND package.json ==="
-          find . -name package.json
+          echo "=== training-video-player ==="
+          ls -la training-video-player
 
       - name: Use Node.js 16
         uses: actions/setup-node@v4
@@ -25,23 +26,21 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: training-video-player
 
-      - name: Install gulp CLI
+      - name: Install Gulp CLI
         run: npm install -g gulp-cli
 
       - name: Bundle solution
         run: gulp bundle --ship
+        working-directory: training-video-player
 
       - name: Package solution
         run: gulp package-solution --ship
-
-      - name: Locate SPFx package
-        run: |
-          echo "Searching for .sppkg files..."
-          find . -name "*.sppkg"
+        working-directory: training-video-player
 
       - name: Upload SPFx package
         uses: actions/upload-artifact@v4
         with:
           name: spfx-sppkg
-          path: "**/*.sppkg"
+          path: training-video-player/sharepoint/solution/*.sppkg
